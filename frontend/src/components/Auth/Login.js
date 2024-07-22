@@ -16,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${apiUrl}/api/auth/login`, { email, password });
+      const res = await axios.post(`${apiUrl}/auth/login`, { email, password });
       console.log(res)
       if (res && res.data && res.data.token) {
         setAuthInfo(res.data.token);
