@@ -16,12 +16,13 @@ const TodoSchema = new mongoose.Schema({
                 type: String,
                 required: true,
             },
-            completed: {
-                type: Boolean,
-                default: false,
+            status: {
+                type: String,
+                default:"pending",
             },
         },
     ],
+    createdOn:{type:Date,default:new Date().getTime()}
 });
 
 module.exports = mongoose.model('Todo', TodoSchema);

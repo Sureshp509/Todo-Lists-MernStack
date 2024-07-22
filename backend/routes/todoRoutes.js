@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { createTodo, getTodos, updateTodo, deleteTodo } = require('../controllers/todoController');
-const {createTodoItem} =require('../controllers/todoItemController');
+const {
+    createTodoItem,
+    getTodoItems,
+    updateTodoItem,
+    deleteTodoItem,
+} = require('../controllers/todoItemController');
 const auth = require('../middleware/auth');
 
 // Create a new to-do
@@ -11,12 +16,16 @@ router.post('/', auth, createTodo);
 router.get('/', auth, getTodos);
 
 // Update a to-do
-router.put('/:id', auth, updateTodo);
+router.put('/:todoId', auth, updateTodo);
 
 // Delete a to-do
-router.delete('/:id', auth, deleteTodo);
+router.delete('/:todoId', auth, deleteTodo);
 
-// Create a new to-do-item
-router.post('/', auth, createTodoItem);
+// To-do items routes
+router.post('/items', auth, createTodoItem);
+router.get('/:todoId/items', auth, getTodoItems);
+router.put('/updateItem/:todoId', auth, updateTodoItem);
+router.delete('/:todoId/items/:itemId', auth, deleteTodoItem);
+
 
 module.exports = router;

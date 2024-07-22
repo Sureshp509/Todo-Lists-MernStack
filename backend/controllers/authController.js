@@ -18,11 +18,13 @@ exports.register = async (req, res) => {
         };
         jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 360000 }, (err, token) => {
             if (err) throw err;
-            res.json({ token });
+            return res.json({
+                message:"Registered Successfully",
+               })
         });
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(500).send('Internal Server error');
     }
 };
 
@@ -31,23 +33,24 @@ exports.login = async (req, res) => {
     try {
         let user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ msg: 'Invalid Credentials' });
+            return res.status(400).json({ msg: 'User not found' });
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ msg: 'Invalid Credentials' });
         }
-        const payload = {
-            user: {
-                id: user.id,
-            },
-        };
+        const payload = { user: { id: user.id, email: user.email } };
+
         jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 360000 }, (err, token) => {
             if (err) throw err;
-            res.json({ token });
+            res.json({message:"Login Successful",email, token });
         });
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(500).send({error:err.message,message:'Internal Server error'});
     }
 };
+
+
+
+
