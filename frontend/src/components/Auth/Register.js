@@ -14,7 +14,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${apiUrl}/auth/register`, { email, password });
+      await axios.post(`https://todo-lists-mernstack.onrender.com/api/auth/register`, { email, password });
       navigate('/login');
     } catch (err) {
      // console.log(err.response.data.msg)
