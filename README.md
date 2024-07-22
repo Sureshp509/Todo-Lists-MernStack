@@ -2,8 +2,8 @@
 
 This is a simple MERN stack application that allows users to create and manage their personal to-do lists. The application includes user authentication and a responsive user interface.
 
-**Deployed Website**
-https://todo-lists-mern-stack-m7az7plsi-sureshs-projects-dac78f80.vercel.app/
+**Deployed Website in Vercel**
+[todo-lists-mern-stack.vercel.app](https://todo-lists-mern-stack.vercel.app)
 
 ## Features
 
