@@ -2,6 +2,8 @@
 
 This is a simple MERN stack application that allows users to create and manage their personal to-do lists. The application includes user authentication and a responsive user interface.
 
+**Deployed Website**
+https://todo-lists-mern-stack-m7az7plsi-sureshs-projects-dac78f80.vercel.app/
 
 ## Features
 
@@ -16,7 +18,7 @@ This is a simple MERN stack application that allows users to create and manage t
 - **Backend**: Node.js, Express
 - **Database**: MongoDB
 - **Authentication**: JWT
-- **Deployment**: Render
+- **Deployment**: Server: Render, Frontend: Vercel
 
 ## Prerequisites
 
@@ -60,3 +62,4 @@ npm start
 Register: Navigate to /register to create a new account.  
 Login: Navigate to /login to sign in to your account.  
 Dashboard: After logging in, you will be redirected to /dashboard, where you can manage your to-do lists.  
+

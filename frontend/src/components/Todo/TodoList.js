@@ -7,11 +7,12 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]); // Initialize as an empty array
   const [newTodo, setNewTodo] = useState('');
   const { authState } = useAuth();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/todos', {
+        const res = await axios.get(`${apiUrl}/api/todos`, {
           headers: {
             'x-auth-token': `${authState.token}`
           }
@@ -34,7 +35,7 @@ const TodoList = () => {
 
   const addTodo = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/todos', { name: newTodo }, {
+      const res = await axios.post(`${apiUrl}/api/todos`, { name: newTodo }, {
         headers: {
           'x-auth-token': `${authState.token}`
         }
@@ -48,7 +49,7 @@ const TodoList = () => {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/todos/${id}`, {
+      await axios.delete(`${apiUrl}/api/todos/${id}`, {
         headers: {
           '': `Bearer ${authState.token}`
         }
@@ -64,7 +65,7 @@ const TodoList = () => {
     if (!updatedText) return;
 
     try {
-      const res = await axios.put(`http://localhost:5000/api/todos/${id}`, { name: updatedText }, {
+      const res = await axios.put(`${apiUrl}/api/todos/${id}`, { name: updatedText }, {
         headers: {
           'x-auth-token': `${authState.token}`
         }
