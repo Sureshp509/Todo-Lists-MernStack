@@ -4,7 +4,7 @@
   "description": "This is a simple MERN stack application that allows users to create and manage their personal to-do lists. The application includes user authentication and a responsive user interface.",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon server.js",
+    "start":"node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

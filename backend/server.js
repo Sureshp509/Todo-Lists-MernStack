@@ -24,7 +24,9 @@ mongoose.connect(process.env.MONGO_URI, {
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/todos', require('./routes/todoRoutes'));
-
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'Server is running' });
+  });
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
