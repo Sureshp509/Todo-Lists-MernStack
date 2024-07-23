@@ -1,7 +1,7 @@
 // src/components/Login/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext'; // Correct import
 
 const Login = () => {
@@ -61,6 +61,7 @@ const Login = () => {
           >
             Login
           </button>
+          <p>Not have account?</p> <Link to="/register"><u>Register</u></Link>
         </form>
       </div>
     </div>

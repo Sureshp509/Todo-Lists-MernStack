@@ -6,6 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 const TodoList = () => {
   const [todos, setTodos] = useState([]); // Initialize as an empty array
   const [newTodo, setNewTodo] = useState('');
+  const [success,setSuccess]=useState("");
   const { authState } = useAuth();
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -18,7 +19,9 @@ const TodoList = () => {
           }
         });
         if (res.data) {
+         
           setTodos(res.data.todos);
+         
         } else {
           console.warn('Unexpected response format:', res.data);
           setTodos([]); // Default to empty array if not
@@ -40,8 +43,10 @@ const TodoList = () => {
           'x-auth-token': `${authState.token}`
         }
       });
-      setTodos([...todos, res.data]);
-      setNewTodo('');
+      console.log(res.data)
+      setSuccess(res.data.message)
+      setTodos([...todos, res.data.newTodo]);
+      
     } catch (err) {
       console.error(err.response ? err.response.data : err.message);
     }
@@ -51,7 +56,7 @@ const TodoList = () => {
     try {
       await axios.delete(`${apiUrl}/api/todos/${id}`, {
         headers: {
-          '': `Bearer ${authState.token}`
+          'x-auth-token': `${authState.token}`
         }
       });
       setTodos(todos.filter(todo => todo._id !== id));
@@ -88,6 +93,7 @@ const TodoList = () => {
           className="border p-2 rounded w-full"
         />
         <button onClick={addTodo} className="bg-blue-500 text-white px-4 py-2 rounded-md mt-2">Add</button>
+        {success && <div className="mb-4 text-red-500">{success}</div>}
       </div>
       <div>
         {todos.length > 0 ? (
